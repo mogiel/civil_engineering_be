@@ -18,26 +18,32 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm:migration:generate": "ts-node ./node_modules/typeorm/cli migration:generate ./migration/update -d ./migration/datasource.ts",
+    "typeorm:migration:run": "ts-node ./node_modules/typeorm/cli migration:run -d ./migration/datasource.ts",
+    "typeorm:migration:revert": "ts-node ./node_modules/typeorm/cli migration:revert -d ./migration/datasource.ts",
+    "TypeORM": "ts-node ./node_modules/typeorm/cli migration:create -o ./migration/"
   },
   "dependencies": {
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^8.4.7",
     "@nestjs/config": "^2.1.0",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/core": "^8.4.7",
+    "@nestjs/platform-express": "^8.4.7",
     "@nestjs/typeorm": "^8.1.4",
     "dotenv": "^16.0.1",
+    "express-rate-limit": "^6.4.0",
+    "helmet": "^5.1.0",
     "mysql": "^2.18.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
+    "rxjs": "^7.5.5",
     "typeorm": "^0.3.7"
   },
   "devDependencies": {
-    "@nestjs/cli": "^8.0.0",
-    "@nestjs/schematics": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/cli": "^8.2.8",
+    "@nestjs/schematics": "^8.0.11",
+    "@nestjs/testing": "^8.4.7",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/jest": "27.5.0",
@@ -55,8 +61,8 @@
     "ts-jest": "28.0.1",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
-    "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "tsconfig-paths": "^4.0.0",
+    "typescript":"^4.7.4"
   },
   "jest": {
     "moduleFileExtensions": [

@@ -1,5 +1,6 @@
 import {Controller, Get} from '@nestjs/common';
 import {CalculationsForFireProtectionService} from "./calculations-for-fire-protection.service";
+import {FireEntity} from "./fire.entity";
 
 @Controller('fire')
 export class CalculationsForFireProtectionController {
@@ -8,7 +9,7 @@ export class CalculationsForFireProtectionController {
     }
 
     @Get('/')
-    getHello(): string {
+    getHello(): Promise<FireEntity[]> {
         return this.fireService.getHello()
     }
 }
