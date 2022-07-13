@@ -6,7 +6,7 @@ import {FireEntity} from "./fire.entity";
 
 @Module({
   imports: [
-      TypeOrmModule.forFeature([FireEntity])
+      TypeOrmModule.forFeature([FireEntity]),
   ],
   controllers: [CalculationsForFireProtectionController],
   providers: [CalculationsForFireProtectionService]

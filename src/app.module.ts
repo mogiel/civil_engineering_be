@@ -7,6 +7,8 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import { CalculationsForFireProtectionModule } from './calculations-for-fire-protection/calculations-for-fire-protection.module';
 import { AboutModule } from './about/about.module';
 import {typeOrmAsyncConfig} from "./config/typeorm.config";
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 
 require('dotenv').config({ path: './.env' })
@@ -20,7 +22,9 @@ require('dotenv').config({ path: './.env' })
       }),
       TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
       CalculationsForFireProtectionModule,
-      AboutModule
+      AboutModule,
+      UserModule,
+      AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
