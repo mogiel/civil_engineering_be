@@ -11,7 +11,7 @@ export const connectionSource = new DataSource({
     database: process.env.DATABASE_NAME,
     entities: ['./dist/**/**.entity{.ts,.js}'],
     bigNumberStrings: false,
-    logging: true,
+    logging: false,
     migrationsTableName: 'migrations',
     migrations: ['migrations/*.ts'],
 } as DataSourceOptions);

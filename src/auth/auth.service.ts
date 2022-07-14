@@ -7,7 +7,7 @@ import {v4 as uuid} from 'uuid'
 import {sign} from "jsonwebtoken";
 import {JwtPayload} from "./jwt.strategy";
 import {UserService} from "../user/user.service";
-import {userInfo} from "os";
+import {UserReturn} from "../types";
 
 require('dotenv').config({ path: './.env' })
 
@@ -26,7 +26,7 @@ export class AuthService {
         return null;
     }
 
-    private createToken(currentTokenId: string): { accessToken: string, expiresIn: number } {
+    private static createToken(currentTokenId: string): { accessToken: string, expiresIn: number } {
         const payload: JwtPayload = {id: currentTokenId};
         const expiresIn = 60 * 60 * 24;
         const accessToken = sign(payload, process.env.SECRET_KEY, {expiresIn})
@@ -37,7 +37,7 @@ export class AuthService {
         }
     }
 
-    private async generateToken(user: User): Promise<string> {
+    private static async generateToken(user: User): Promise<string> {
         let token;
         let userWithThisToken = null;
 
@@ -71,11 +71,11 @@ export class AuthService {
                 return res.json({error: 'Invalid login data!'})
             }
 
-            const token = this.createToken(await this.generateToken(user));
+            const token = AuthService.createToken(await AuthService.generateToken(user));
 
             return res
                 .cookie('jwt', token.accessToken, {
-                    secure: false, //true podczas uzywania https, false na http(localhost)
+                    secure: true, //true podczas uzywania https, false na http(localhost)
                     domain: process.env.DATABASE_HOST,
                     httpOnly: true
                 })
@@ -93,7 +93,7 @@ export class AuthService {
             user.currentTokenId = null;
             await user.save();
             res.clearCookie('jwt',{
-                secure: false,
+                secure: true,
                 domain: process.env.DATABASE_HOST,
                 httpOnly: true
             });
@@ -103,11 +103,8 @@ export class AuthService {
         }
     }
 
-    async userInfo(user: User): Promise<userInfo> {
+    async userInfo(user: User): Promise<UserReturn> {
         const {password, currentTokenId, ...result} = await user
-        console.log(result)
-        console.log(userInfo)
-        // @ts-ignore
         return result
     }
 }

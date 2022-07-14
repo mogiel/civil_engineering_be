@@ -10,4 +10,4 @@ export class UserDto{
     position: string;
 }
 
-export type UserDtoSafe = Omit<UserDto, "password" | "currentTokenId" | "position">
+export type UserDtoSafe = Omit<UserDto, "password" | "currentTokenId">
