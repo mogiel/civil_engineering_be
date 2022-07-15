@@ -1,0 +1,13 @@
+CREATE TABLE fire_entity (
+	id INT NOT NULL,
+	classBuilding VARCHAR(1) NULL,
+	main VARCHAR(12) NULL,
+	roof VARCHAR(12) NULL,
+	`ceiling` VARCHAR(12) NULL,
+	exteriorWall VARCHAR(12) NULL,
+	internalWall VARCHAR(12) NULL,
+	cover VARCHAR(12) NULL
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;

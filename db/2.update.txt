@@ -1,0 +1,5 @@
+INSERT INTO fire_entity (id, classBuilding, main, roof, `ceiling`, exteriorWall, internalWall, cover) VALUES(1, 'A', 'R240', 'R30', 'REI120', 'EI120 (o-i)', 'EI60', 'RE30');
+INSERT INTO fire_entity (id, classBuilding, main, roof, `ceiling`, exteriorWall, internalWall, cover) VALUES(2, 'B', 'R120', 'R30', 'REI60', 'EI60 (o-i)', 'EI30', 'RE30');
+INSERT INTO fire_entity (id, classBuilding, main, roof, `ceiling`, exteriorWall, internalWall, cover) VALUES(3, 'C', 'R60', 'R15', 'REI60', 'EI30 (o-i)', 'EI15', 'RE15');
+INSERT INTO fire_entity (id, classBuilding, main, roof, `ceiling`, exteriorWall, internalWall, cover) VALUES(4, 'D', 'R30', '(-)', 'REI30', 'EI30 (o-i)', '(-)', '(-)');
+INSERT INTO fire_entity (id, classBuilding, main, roof, `ceiling`, exteriorWall, internalWall, cover) VALUES(5, 'E', '(-)', '(-)', '(-)', '(-)', '(-)', '(-)');

@@ -9,8 +9,7 @@ async function bootstrap() {
     // CORS
     const corsOptions = {
         credentials: true,
-        origin: true
-        // origin: ['http://localhost:3000', 'http://localhost:3000/user']
+        origin: ['https://mogiel89.smallhost.pl:3000/', 'https://mogiel89.smallhost.pl:3000/user/']
     }
     await app.enableCors(corsOptions)
 
