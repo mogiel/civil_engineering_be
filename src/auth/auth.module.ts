@@ -8,7 +8,6 @@ import {JwtModule} from "@nestjs/jwt";
 import {ConfigService} from "@nestjs/config";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {User} from "../user/entities/user.entity";
-import {LocalStrategy} from "./local.strategy";
 
 require('dotenv').config({ path: './.env' })
 
@@ -22,7 +21,7 @@ require('dotenv').config({ path: './.env' })
         }),
         JwtModule.registerAsync({
             inject: [ConfigService],
-            useFactory: (config: ConfigService) => ({
+            useFactory: async () => ({
                 secret: process.env.SECRET_KEY,
                 signOptions: {
                     expiresIn: 60 * 60 * 24
@@ -32,7 +31,7 @@ require('dotenv').config({ path: './.env' })
         TypeOrmModule.forFeature([User]),
     ],
     controllers: [AuthController],
-    providers: [AuthService,LocalStrategy, JwtStrategy],
+    providers: [AuthService, JwtStrategy],
 
 })
 export class AuthModule {

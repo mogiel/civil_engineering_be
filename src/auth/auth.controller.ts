@@ -37,4 +37,15 @@ export class AuthController {
     return this.authService.logout(user, res)
   }
 
+  // @Get('/test')
+  // @UseGuards(AuthGuard('jwt'))
+  // async test(
+  //     @UserObjDecorator() user: User,
+  // ): Promise<any> {
+  //   console.log('Wejscie w test', user)
+  //   return {
+  //     data: user
+  //   }
+  // }
+
 }

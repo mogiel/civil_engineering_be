@@ -49,7 +49,6 @@ export class AuthService {
         } while (!!userWithThisToken)
         user.currentTokenId = token
         await user.save();
-
         return token
     }
 
@@ -75,7 +74,7 @@ export class AuthService {
 
             return res
                 .cookie('jwt', token.accessToken, {
-                    secure: true, //true podczas uzywania https, false na http(localhost)
+                    secure: false, //todo: true podczas uzywania https, false na http(localhost)
                     domain: process.env.DATABASE_HOST,
                     httpOnly: true
                 })
