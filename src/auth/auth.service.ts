@@ -78,7 +78,7 @@ export class AuthService {
                     secure: true, //todo: true podczas uzywania https, false na http(localhost)
                     domain: process.env.DATABASE_HOST,
                     httpOnly: true,
-                    sameSite: "strict"
+                    sameSite: "lax"
                 })
                 .json({
                     ok: true,
@@ -96,7 +96,7 @@ export class AuthService {
                 secure: true,
                 domain: process.env.DATABASE_HOST,
                 httpOnly: true,
-                sameSite: "strict"
+                sameSite: "lax"
             });
             return res.json({ok: true})
         } catch (e) {
