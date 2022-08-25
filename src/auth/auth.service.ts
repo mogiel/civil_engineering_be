@@ -9,18 +9,19 @@ import {JwtPayload} from "./jwt.strategy";
 import {UserService} from "../user/user.service";
 import {UserReturn} from "../types";
 
-require('dotenv').config({ path: './.env' })
+require('dotenv').config({path: './.env'})
 
 export type userInfo = Omit<User, "password" | "currentTokenId">
 
 @Injectable()
 export class AuthService {
-    constructor(private usersService: UserService) {}
+    constructor(private usersService: UserService) {
+    }
 
     async validateUser(username: string, pass: string): Promise<any> {
         const user = await this.usersService.findOne(username);
         if (user && user.password === hashPwd(pass)) {
-            const { password, ...result } = user;
+            const {password, ...result} = user;
             return result;
         }
         return null;
@@ -54,7 +55,7 @@ export class AuthService {
 
     async login(req: AuthLoginDto, res: Response): Promise<any> {
 
-        if (req.email == ''){
+        if (req.email == '') {
             return res.json({error: 'Invalid login data!'})
         }
 
@@ -74,13 +75,13 @@ export class AuthService {
 
             return res
                 .cookie('jwt', token.accessToken, {
-                    secure: false, //todo: true podczas uzywania https, false na http(localhost)
+                    secure: true, //todo: true podczas uzywania https, false na http(localhost)
                     domain: process.env.DATABASE_HOST,
-                    httpOnly: true
+                    httpOnly: true,
+                    sameSite: "strict"
                 })
                 .json({
                     ok: true,
-                    token: token.accessToken
                 })
         } catch (e) {
             return res.json({error: e.message});
@@ -91,10 +92,11 @@ export class AuthService {
         try {
             user.currentTokenId = null;
             await user.save();
-            res.clearCookie('jwt',{
+            res.clearCookie('jwt', {
                 secure: true,
                 domain: process.env.DATABASE_HOST,
-                httpOnly: true
+                httpOnly: true,
+                sameSite: "strict"
             });
             return res.json({ok: true})
         } catch (e) {

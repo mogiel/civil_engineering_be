@@ -3,6 +3,7 @@ export interface Links {
     fire: string;
     register: string,
     login: string,
+    logout: string,
     user:string,
 
     about: string,

@@ -17,6 +17,7 @@ export class AuthController {
   getHello(
       @UserObjDecorator() user: User,
   ): Promise<UserReturn> {
+    console.log(user)
     return this.authService.userInfo(user)
   }
 
@@ -36,16 +37,5 @@ export class AuthController {
   ):Promise<any> {
     return this.authService.logout(user, res)
   }
-
-  // @Get('/test')
-  // @UseGuards(AuthGuard('jwt'))
-  // async test(
-  //     @UserObjDecorator() user: User,
-  // ): Promise<any> {
-  //   console.log('Wejscie w test', user)
-  //   return {
-  //     data: user
-  //   }
-  // }
 
 }
