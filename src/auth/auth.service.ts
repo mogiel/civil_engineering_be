@@ -104,8 +104,46 @@ export class AuthService {
         }
     }
 
+    async deleteOne(user: User, res: Response): Promise<any> {
+        try {
+            res.clearCookie('jwt', {
+                secure: true,
+                domain: process.env.DATABASE_HOST,
+                httpOnly: true,
+                sameSite: "lax"
+            });
+            await this.usersService.deleteUser(user)
+            return res.json({ok: true})
+        } catch (e) {
+            return res.json({error: e.message})
+        }
+    }
+
     async userInfo(user: User): Promise<UserReturn> {
         const {password, currentTokenId, ...result} = await user
         return result
+    }
+
+    async getUserSub(user: User) {
+        const userSub = await User.findOne({
+            select: {
+                id: true,
+                position: true,
+                sub: {
+                    created_at: true,
+                    free_day: true,
+                    subs_term: true,
+                }
+            },
+            where: {
+                id: user.id
+            },
+            relations: {
+                sub: true
+            }
+
+        })
+        console.log(userSub)
+        return userSub
     }
 }

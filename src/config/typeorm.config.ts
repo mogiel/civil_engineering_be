@@ -21,7 +21,7 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
             extra: {
                 charset: 'utf8mb4_unicode_ci',
             },
-            synchronize: false,
+            synchronize: true,
             logging: false,
         };
     },

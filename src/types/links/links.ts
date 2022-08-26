@@ -5,6 +5,7 @@ export interface Links {
     login: string,
     logout: string,
     user:string,
+    subscription: string,
 
     about: string,
 }
