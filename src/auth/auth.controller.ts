@@ -1,11 +1,12 @@
-import {Controller, Post, Body, Res, UseGuards, Get, Delete, Patch} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Patch, Post, Res, UseGuards} from '@nestjs/common';
 import {AuthService} from './auth.service';
 import {Response} from 'express'
 import {AuthLoginDto} from "./dto/auth-login.dto";
 import {UserObjDecorator} from "../decorators/user-obj.decorator";
-import {User} from 'src/user/entities/user.entity';
+import {sitePosition, User} from 'src/user/entities/user.entity';
 import {JwtAuthGuard} from "./auth.guard";
 import {Sub, UserReturn} from "../types";
+import {Roles} from "../decorators/user-position.decorator";
 
 @Controller('user')
 export class AuthController {
@@ -17,7 +18,6 @@ export class AuthController {
     getHello(
         @UserObjDecorator() user: User,
     ): Promise<UserReturn> {
-        console.log(user)
         return this.authService.userInfo(user)
     }
 
@@ -26,7 +26,6 @@ export class AuthController {
         @Body() req: AuthLoginDto,
         @Res() res: Response
     ): Promise<any> {
-        console.log('weszło w login post')
         return this.authService.login(req, res)
     }
 
@@ -39,12 +38,12 @@ export class AuthController {
         return this.authService.logout(user, res)
     }
 
+    @Roles(sitePosition.USER)
     @UseGuards(JwtAuthGuard)
     @Get('/info')
     async userInfo(
         @UserObjDecorator() user: User
     ): Promise<UserReturn> {
-        console.log(user)
         return this.authService.userInfo(user)
     }
 
@@ -54,7 +53,6 @@ export class AuthController {
         @UserObjDecorator() user: User,
         @Res() res: Response
     ): Promise<void> {
-        console.log('weszło w delete')
         return this.authService.deleteOne(user, res)
     }
 

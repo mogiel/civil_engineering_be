@@ -31,7 +31,10 @@ require('dotenv').config({ path: './.env' })
         TypeOrmModule.forFeature([User]),
     ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy],
+    providers: [
+        AuthService,
+        JwtStrategy
+    ],
 
 })
 export class AuthModule {
