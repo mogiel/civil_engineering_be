@@ -1,9 +1,10 @@
 import {Injectable, ExecutionContext} from '@nestjs/common';
 import {AuthGuard } from '@nestjs/passport';
 import {Request} from 'express';
-import {sitePosition, User} from '../user/entities/user.entity';
+import {User} from '../user/entities/user.entity';
 import {Reflector} from "@nestjs/core";
 import {ROLES_KEY} from "../decorators/user-position.decorator";
+import { sitePosition } from 'src/types/user/user.enum';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {

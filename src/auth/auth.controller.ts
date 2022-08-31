@@ -3,10 +3,11 @@ import {AuthService} from './auth.service';
 import {Response} from 'express'
 import {AuthLoginDto} from "./dto/auth-login.dto";
 import {UserObjDecorator} from "../decorators/user-obj.decorator";
-import {sitePosition, User} from 'src/user/entities/user.entity';
+import {User} from 'src/user/entities/user.entity';
 import {JwtAuthGuard} from "./auth.guard";
 import {Sub, UserReturn} from "../types";
 import {Roles} from "../decorators/user-position.decorator";
+import { sitePosition } from 'src/types/user/user.enum';
 
 @Controller('user')
 export class AuthController {

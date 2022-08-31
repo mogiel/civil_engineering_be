@@ -1,21 +1,15 @@
+import { sitePosition } from "src/types/user/user.enum";
 import {
     BaseEntity,
     Column,
     Entity,
     Generated,
-    JoinColumn,
     OneToOne,
     PrimaryColumn,
-    PrimaryGeneratedColumn
 } from "typeorm";
 import {UserDto} from "../dto/user.dto";
 import {SubscriptionEntity} from "./subscription.entity"
 
-export enum sitePosition {
-    ADMIN = 'admin',
-    USER = 'user',
-    USER_SUB = 'userSubscription'
-}
 
 @Entity()
 export class User extends BaseEntity implements UserDto {

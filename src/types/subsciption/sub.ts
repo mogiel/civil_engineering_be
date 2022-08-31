@@ -1,4 +1,4 @@
-import { sitePosition } from "../../user/entities/user.entity";
+import {sitePosition} from "../user";
 
 export interface Sub {
     id: string;
