@@ -7,7 +7,7 @@ import {v4 as uuid} from 'uuid'
 import {sign} from "jsonwebtoken";
 import {JwtPayload} from "./jwt.strategy";
 import {UserService} from "../user/user.service";
-import {UserReturn} from "../types";
+import {Sub, UserReturn} from "../types";
 
 require('dotenv').config({path: './.env'})
 
@@ -124,8 +124,8 @@ export class AuthService {
         return result
     }
 
-    async getUserSub(user: User) {
-        const userSub = await User.findOne({
+    async getUserSub(user: User): Promise<Sub> {
+        return await User.findOne({
             select: {
                 id: true,
                 position: true,
@@ -143,7 +143,5 @@ export class AuthService {
             }
 
         })
-        console.log(userSub)
-        return userSub
     }
 }

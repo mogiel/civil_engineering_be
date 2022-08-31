@@ -11,7 +11,7 @@ import {
 import {UserDto} from "../dto/user.dto";
 import {SubscriptionEntity} from "./subscription.entity"
 
-enum sitePosition {
+export enum sitePosition {
     ADMIN = 'admin',
     USER = 'user',
     USER_SUB = 'userSubscription'

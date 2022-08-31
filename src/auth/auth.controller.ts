@@ -5,7 +5,7 @@ import {AuthLoginDto} from "./dto/auth-login.dto";
 import {UserObjDecorator} from "../decorators/user-obj.decorator";
 import {User} from 'src/user/entities/user.entity';
 import {JwtAuthGuard} from "./auth.guard";
-import {UserReturn} from "../types";
+import {Sub, UserReturn} from "../types";
 
 @Controller('user')
 export class AuthController {
@@ -70,7 +70,7 @@ export class AuthController {
     @Get('/sub')
     async getUserSub(
         @UserObjDecorator() user: User
-    ): Promise<any> {
+    ): Promise<Sub> {
         return await this.authService.getUserSub(user)
     }
 

@@ -9,6 +9,7 @@ import { AboutModule } from './about/about.module';
 import {typeOrmAsyncConfig} from "./config/typeorm.config";
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { SubsModule } from './subs/subs.module';
 
 
 require('dotenv').config({ path: './.env' })
@@ -24,7 +25,8 @@ require('dotenv').config({ path: './.env' })
       CalculationsForFireProtectionModule,
       AboutModule,
       UserModule,
-      AuthModule
+      AuthModule,
+      SubsModule
   ],
   controllers: [AppController],
   providers: [AppService],
