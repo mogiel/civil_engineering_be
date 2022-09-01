@@ -7,6 +7,7 @@ import {UserDto, UserDtoSafe} from "./dto/user.dto";
 import {toUserDto} from "../shared/mapper";
 import {hashPwd} from "../utils/hash-pwd";
 import {SubscriptionEntity} from "./entities/subscription.entity";
+import {sitePosition} from "../types";
 
 @Injectable()
 export class UserService {
@@ -45,5 +46,14 @@ export class UserService {
         return await this.userRepository.findOne({
             where: {username: username}
         });
+    }
+
+    async changeSubs(req) {
+        await this.userRepository.update({
+                id: req.data
+            },
+            {
+                position: sitePosition.USER_SUB
+            })
     }
 }

@@ -141,7 +141,6 @@ export class AuthService {
             relations: {
                 sub: true
             }
-
         })
     }
 }
