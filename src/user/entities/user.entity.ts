@@ -53,7 +53,7 @@ export class User extends BaseEntity implements UserDto {
     })
     position: sitePosition
 
-    @OneToOne(() => SubscriptionEntity, sub => sub.user)
+    @OneToOne(() => SubscriptionEntity, sub => sub.user, {onUpdate: "CASCADE"})
     sub: SubscriptionEntity
 
 }

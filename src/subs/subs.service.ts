@@ -3,7 +3,6 @@ import {UserService} from "../user/user.service";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Equal, Repository} from "typeorm";
 import {ChoiceSubEntity} from "./entities/choiceSub.entity";
-import {sitePosition} from "../types";
 
 @Injectable()
 export class SubsService {
@@ -41,7 +40,16 @@ export class SubsService {
     }
 
     async changeSubs(req) {
-        await this.usersService.changeSubs(req)
+        const days = await this.subChoiceRepository.findOne({
+            select: {
+                days: true
+            },
+            where: {
+                price: req.price
+            }
+        })
+
+        await this.usersService.changeSubs(req.id, days.days)
 
         return {
             status: true

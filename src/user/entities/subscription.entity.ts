@@ -6,7 +6,6 @@ import {
     JoinColumn,
     OneToOne,
     PrimaryColumn,
-    PrimaryGeneratedColumn
 } from "typeorm";
 import {User} from "./user.entity";
 
@@ -20,7 +19,7 @@ export class SubscriptionEntity extends BaseEntity {
         type: 'timestamp',
         default: null
     })
-    subs_term: Date
+    subs_term: Date | null
 
     @Column({
         default: () => 'CURRENT_TIMESTAMP',

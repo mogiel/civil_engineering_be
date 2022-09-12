@@ -48,12 +48,26 @@ export class UserService {
         });
     }
 
-    async changeSubs(req) {
+    async changeSubs(id, days) {
+
+        let date = new Date()
+        date.setDate(date.getDate() + days)
+
         await this.userRepository.update({
-                id: req.data
-            },
-            {
-                position: sitePosition.USER_SUB
-            })
+            id
+        },{
+            position: sitePosition.USER_SUB
+        })
+
+        await this.subRepository.update({
+            user: id
+        },{
+            subs_term: date,
+            free_day: false
+        })
+
+        return {
+            ok: true
+        }
     }
 }
