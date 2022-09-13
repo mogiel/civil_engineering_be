@@ -7,7 +7,7 @@ import {v4 as uuid} from 'uuid'
 import {sign} from "jsonwebtoken";
 import {JwtPayload} from "./jwt.strategy";
 import {UserService} from "../user/user.service";
-import {Sub, UserReturn} from "../types";
+import {sitePosition, Sub, UserReturn} from "../types";
 
 require('dotenv').config({path: './.env'})
 
@@ -142,5 +142,16 @@ export class AuthService {
                 sub: true
             }
         })
+    }
+
+    userInfoSite(user: User) {
+        switch (user.position) {
+            case sitePosition.USER:
+                return ["main", "fire"]
+            case sitePosition.USER_SUB:
+                return ["main", "fire", "sub_user"]
+            default:
+                return ["main", "register", "login", "about"]
+        }
     }
 }

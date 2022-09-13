@@ -5,9 +5,9 @@ import {AuthLoginDto} from "./dto/auth-login.dto";
 import {UserObjDecorator} from "../decorators/user-obj.decorator";
 import {User} from 'src/user/entities/user.entity';
 import {JwtAuthGuard} from "./auth.guard";
-import {Sub, UserReturn} from "../types";
+import {sitePosition, Sub, UserReturn} from "../types";
 import {Roles} from "../decorators/user-position.decorator";
-import { sitePosition } from 'src/types/user/user.enum';
+
 
 @Controller('user')
 export class AuthController {
@@ -39,13 +39,21 @@ export class AuthController {
         return this.authService.logout(user, res)
     }
 
-    @Roles(sitePosition.USER)
+    @Roles(sitePosition.USER, sitePosition.USER_SUB)
     @UseGuards(JwtAuthGuard)
     @Get('/info')
     async userInfo(
         @UserObjDecorator() user: User
     ): Promise<UserReturn> {
         return this.authService.userInfo(user)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('/info-site')
+    async userInfoSite(
+        @UserObjDecorator() user: User
+    ): Promise<string[]> {
+        return this.authService.userInfoSite(user)
     }
 
     @UseGuards(JwtAuthGuard)
